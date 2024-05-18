@@ -1,3 +1,4 @@
+import React from 'react';
 import "./AnnouncementModal.css";
 import newSvg from "./New.svg";
 
