@@ -7,7 +7,7 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.js',
-        library: 'MyUILibrary',
+        library: 'next-fab-plugins-library',
         libraryTarget: 'umd',
     },
     externals: [nodeExternals()],
@@ -23,6 +23,10 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            },
+            {
+                test: /\.svg$/,
+                use: ['svg-url-loader'],
             },
         ],
     },
