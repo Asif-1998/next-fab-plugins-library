@@ -1,27 +1,7 @@
-import { useState, useEffect } from 'react';
 import "./AnnouncementModal.css";
 import newSvg from "./New.svg";
 
 const AnnouncementModal = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && isOpen) {
-      const handleOutsideClick = (event) => {
-        if (!event.target.closest('.AnnouncementModal-modal-content')) {
-          closeModal();
-        }
-      };
-      document.addEventListener('mousedown', handleOutsideClick);
-      return () => {
-        document.removeEventListener('mousedown', handleOutsideClick);
-      };
-    }
-  }, [isOpen]);
-
-  const closeModal = () => {
-    setIsOpen(false);
-  };
 
   const questionsAnswers = [
     { button: "my button", question: "Data types in JavaScript?", answer: "Data types in JavaScript define the data type that a variable can store. JavaScript includes primitive and non-primitive data types." },
@@ -33,40 +13,32 @@ const AnnouncementModal = () => {
     { button: "my button", question: "Loops in JavaScript?", answer: "Loops are used to execute the same block of code repeatedly until a specified condition is met. JavaScript supports several types of loops, including for, while, and do-while loops." }
   ];
 
+  const closeModal = () => {
+    console.log("closed");
+  }
+
   return (
     <>
-      {isOpen && (
-        <div className="AnnouncementModal-modal">
-          <div className="AnnouncementModal-modal-content">
-            <div className="AnnouncementModal-modal-header">
-              <img src={newSvg} alt="icon" className="AnnouncementModal-new-img" />
-              <h2 className="AnnouncementModal-modal-title">Announcements!!!</h2>
-              <span className="AnnouncementModal-close" onClick={closeModal}>×</span>
-            </div>
-            <div className="AnnouncementModal-modal-body">
-              {questionsAnswers.map((item, index) => (
-                <div key={index} className="AnnouncementModal-content-div">
-                  <button className="AnnouncementModal-content-button">{item.button}</button>
-                  <h3 className="AnnouncementModal-content-h3">{item.question}</h3>
-                  <p className="AnnouncementModal-content-p">{item.answer}</p>
-                </div>
-              ))}
-            </div>
+      <div className="AnnouncementModal-modal">
+        <div className="AnnouncementModal-modal-content">
+          <div className="AnnouncementModal-modal-header">
+            <img src={newSvg} alt="icon" className="AnnouncementModal-new-img" />
+            <h2 className="AnnouncementModal-modal-title">Announcements!!!</h2>
+            <span className="AnnouncementModal-close" onClick={closeModal}>×</span>
+          </div>
+          <div className="AnnouncementModal-modal-body">
+            {questionsAnswers.map((item, index) => (
+              <div key={index} className="AnnouncementModal-content-div">
+                <button className="AnnouncementModal-content-button">{item.button}</button>
+                <h3 className="AnnouncementModal-content-h3">{item.question}</h3>
+                <p className="AnnouncementModal-content-p">{item.answer}</p>
+              </div>
+            ))}
           </div>
         </div>
-      )}
+      </div>
     </>
   );
-};
-
-// Function to open the modal
-AnnouncementModal.open = () => {
-  setIsOpen(true);
-};
-
-// Function to close the modal
-AnnouncementModal.close = () => {
-  setIsOpen(false);
 };
 
 export default AnnouncementModal;
