@@ -14,7 +14,7 @@ const AnnouncementModal = () => {
   ];
 
   const [isModalVisible, setIsModalVisible] = useState(true); // Add state for modal visibility
-  const [expanded, setExpanded] = useState(false); // State variable to track expansion
+  const [expandedIndexes, setExpandedIndexes] = useState([]); // State variable to track expanded content
 
   const closeModal = () => {
     setIsModalVisible(false); // Update state to hide modal
@@ -28,8 +28,18 @@ const AnnouncementModal = () => {
     closeModal(); // Close modal when clicking on background
   };
 
-  const toggleExpand = () => {
-    setExpanded(!expanded); // Toggle the expansion state
+  const toggleExpand = (index) => {
+    setExpandedIndexes(prevIndexes => {
+      if (prevIndexes.includes(index)) {
+        return prevIndexes.filter(i => i !== index); // Collapse if already expanded
+      } else {
+        return [...prevIndexes, index]; // Expand if not expanded
+      }
+    });
+  };
+
+  const isExpanded = (index) => {
+    return expandedIndexes.includes(index);
   };
 
   return (
@@ -47,18 +57,20 @@ const AnnouncementModal = () => {
                 <div key={index} className="AnnouncementModal-content-div">
                   <button className="AnnouncementModal-content-button">{item.button}</button>
                   <h3 className="AnnouncementModal-content-h3">{item.question}</h3>
-                  <p className={`AnnouncementModal-content-p ${expanded ? 'AnnouncementModal-content-p-expanded' : ''}`}>{item.answer}</p>
+                  <p className={`AnnouncementModal-content-p ${isExpanded(index) ? 'AnnouncementModal-content-p-expanded' : ''}`}>
+                    {item.answer}
+                  </p>
                   {/* Render "Read More" link only if the content exceeds two lines */}
                   {item.answer.split('\n').length > 2 && (
-                    <button className="AnnouncementModal-read-more" onClick={toggleExpand}>
-                      {expanded ? 'Read Less' : 'Read More'}
+                    <button className="AnnouncementModal-read-more" onClick={() => toggleExpand(index)}>
+                      {isExpanded(index) ? 'Read Less' : 'Read More'}
                     </button>
                   )}
                 </div>
               ))}
+            </div>
           </div>
         </div>
-        </div >
       )}
     </>
   );
