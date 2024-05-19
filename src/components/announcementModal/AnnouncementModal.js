@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import "./AnnouncementModal.css";
 import newSvg from "./New.svg";
 
