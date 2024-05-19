@@ -7,7 +7,7 @@ import SearchIcon from "./assets/icon/search.svg";
 import CircleDownIcon from "./assets/icon/CircleDown.svg";
 import CircleUpIcon from "./assets/icon/CircleUp.svg";
 
-var faqItems = [
+const faqItems = [
     { question: "How do I open a bank account with FAB?", answer: "To create your account with FAB, you can visit their website and follow the instructions for account opening. You may need to provide personal information and identification documents" },
     { question: " What are the requirements for opening a bank account with FAB?", answer: "Typically, you will need to provide proof of identity such as a passport or national ID card, proof of address, and possibly other documents depending on the type of account you wish to open." },
     { question: "How can I access FAB's online banking services?", answer: "You can access FAB's online banking by visiting their website and logging in with your account credentials. Alternatively, you may download their mobile banking app from the App Store or Google Play Store and log in using your account details." },
@@ -22,13 +22,24 @@ var faqItems = [
 
 const FAQComponent = () => {
     const [searchTerm, setSearchTerm] = useState('');
+    const [faqItemsJson, setFaqItemsJson] = useState(faqItems);
 
     const handleSearch = (event) => {
         setSearchTerm(event.target.value.trim().toLowerCase());
+        const filterFAQ = faqItems.filter((item)=> item.question.toLowerCase().includes(searchTerm));
+        setFaqItemsJson(filterFAQ);
+        
     };
 
     const toggleFAQItem = (id) => {
-        
+        const answerElement = document.getElementById("answer" + id);
+        answerElement.classList.toggle("faq-hidden");
+        const queImage = document.getElementById("img" + id);
+        if (answerElement.classList.contains("faq-hidden")) {
+            queImage.setAttribute("src", CircleDownIcon);
+        } else {
+            queImage.setAttribute("src", CircleUpIcon);
+        }
     };
 
     return (
@@ -52,7 +63,7 @@ const FAQComponent = () => {
                     onChange={handleSearch}
                 />
                 <div className="faq-outer-div">
-                    {faqItems.map((faqItem, index) => (
+                    {faqItemsJson.map((faqItem, index) => (
                         <div key={index}>
                             <div className="faq-questions-box" id={"questions" + (index + 1)}>
                                 <div className="faq-question" id={"que" + (index + 1)}>{faqItem.question}</div>
