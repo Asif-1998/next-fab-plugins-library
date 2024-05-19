@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import "./AnnouncementModal.css";
 import newSvg from "./New.svg";
 
@@ -13,9 +13,7 @@ const AnnouncementModal = () => {
     { button: "my button", question: "Loops in JavaScript?", answer: "Loops are used to execute the same block of code repeatedly until a specified condition is met. JavaScript supports several types of loops, including for, while, and do-while loops." }
   ];
 
-  const [isModalVisible, setIsModalVisible] = useState(true); // Add state for modal visibility
-  const [expandedIndexes, setExpandedIndexes] = useState([]);
-  const modalContentRef = useRef(null);
+  const [isModalVisible, setIsModalVisible] = useState(true);
 
   const closeModal = () => {
     setIsModalVisible(false); // Update state to hide modal
@@ -28,27 +26,6 @@ const AnnouncementModal = () => {
   const handleBackgroundClick = () => {
     closeModal(); // Close modal when clicking on background
   };
-
-  const toggleExpand = (index) => {
-    setExpandedIndexes((prevIndexes) => {
-      if (prevIndexes.includes(index)) {
-        return prevIndexes.filter((i) => i !== index);
-      } else {
-        return [...prevIndexes, index];
-      }
-    });
-  };
-
-  const isExpanded = (index) => {
-    return expandedIndexes.includes(index);
-  };
-
-  useEffect(() => {
-    if (modalContentRef.current) {
-      const height = modalContentRef.current.clientHeight;
-      console.log(`Height: ${height}`);
-    }
-  }, [modalContentRef]);
 
   return (
     <>
@@ -65,23 +42,7 @@ const AnnouncementModal = () => {
                 <div key={index} className="AnnouncementModal-content-div">
                   <button className="AnnouncementModal-content-button">{item.button}</button>
                   <h3 className="AnnouncementModal-content-h3">{item.question}</h3>
-                  <p
-                    ref={modalContentRef}
-                    className={`AnnouncementModal-content-p ${isExpanded(index) ? 'AnnouncementModal-content-p-expanded' : ''}`}
-                    style={{
-                      maxHeight: isExpanded(index) ? 'none' : '40px',
-                      overflow: 'hidden'
-                    }}
-                  >
-                    {item.answer}
-                  </p>
-                  {modalContentRef.current && modalContentRef.current.clientHeight > 40 && (
-                    <button className="AnnouncementModal-read-more" onClick={() => toggleExpand(index)}>
-                      {isExpanded(index) ? 'Read Less' : 'Read More'}
-                    </button>
-                  )}
-                  <p>{modalContentRef.current}</p>
-                  <p>{modalContentRef.current.clientHeight}</p>
+                  <p className="AnnouncementModal-content-p">{item.answer}</p>
                 </div>
               ))}
             </div>
