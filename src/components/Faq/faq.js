@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './FAQComponent.css'; // Import your CSS file
+import './faq.css'; // Import your CSS file
 
 import ChatbotIcon from "./assets/icon/Chatbot.svg";
 import MessageIconImg from "./assets/icon/MessageIocn.svg";
