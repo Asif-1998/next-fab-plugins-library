@@ -14,19 +14,8 @@ const AnnouncementModal = () => {
   ];
 
   const [isModalVisible, setIsModalVisible] = useState(true); // Add state for modal visibility
-  const [showFullAnswer, setShowFullAnswer] = useState(false);
+  const [expandedIndexes, setExpandedIndexes] = useState([]);
   const modalContentRef = useRef(null);
-
-  useEffect(() => {
-    // Check if the height of the modal content exceeds 40px
-    if (modalContentRef.current.clientHeight > 40) {
-      setShowFullAnswer(true);
-    }
-  }, []);
-
-  const toggleAnswer = () => {
-    setShowFullAnswer(!showFullAnswer);
-  };
 
   const closeModal = () => {
     setIsModalVisible(false); // Update state to hide modal
@@ -39,6 +28,27 @@ const AnnouncementModal = () => {
   const handleBackgroundClick = () => {
     closeModal(); // Close modal when clicking on background
   };
+
+  const toggleExpand = (index) => {
+    setExpandedIndexes((prevIndexes) => {
+      if (prevIndexes.includes(index)) {
+        return prevIndexes.filter((i) => i !== index);
+      } else {
+        return [...prevIndexes, index];
+      }
+    });
+  };
+
+  const isExpanded = (index) => {
+    return expandedIndexes.includes(index);
+  };
+
+  useEffect(() => {
+    if (modalContentRef.current) {
+      const height = modalContentRef.current.clientHeight;
+      console.log(`Height: ${height}`);
+    }
+  }, [modalContentRef]);
 
   return (
     <>
@@ -57,19 +67,21 @@ const AnnouncementModal = () => {
                   <h3 className="AnnouncementModal-content-h3">{item.question}</h3>
                   <p
                     ref={modalContentRef}
-                    className={`AnnouncementModal-content-p ${showFullAnswer ? "AnnouncementModal-content-p-expanded" : ""}`}
+                    className={`AnnouncementModal-content-p ${isExpanded(index) ? 'AnnouncementModal-content-p-expanded' : ''}`}
                     style={{
-                      maxHeight: showFullAnswer ? "none" : "40px",
-                      overflow: "hidden"
+                      maxHeight: isExpanded(index) ? 'none' : '40px',
+                      overflow: 'hidden'
                     }}
                   >
                     {item.answer}
                   </p>
-                  {modalContentRef.current.clientHeight > 40 && (
-                    <button className="AnnouncementModal-read-more" onClick={toggleAnswer}>
-                      {showFullAnswer ? 'Read Less' : 'Read More'}
+                  {modalContentRef.current && modalContentRef.current.clientHeight > 40 && (
+                    <button className="AnnouncementModal-read-more" onClick={() => toggleExpand(index)}>
+                      {isExpanded(index) ? 'Read Less' : 'Read More'}
                     </button>
                   )}
+                  <p>{modalContentRef.current}</p>
+                  <p>{modalContentRef.current.clientHeight}</p>
                 </div>
               ))}
             </div>
