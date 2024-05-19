@@ -15,6 +15,18 @@ const AnnouncementModal = () => {
 
   const [isModalVisible, setIsModalVisible] = useState(true); // Add state for modal visibility
   const [showFullAnswer, setShowFullAnswer] = useState(false);
+  const modalContentRef = useRef(null);
+
+  useEffect(() => {
+    // Check if the height of the modal content exceeds 40px
+    if (modalContentRef.current.clientHeight > 40) {
+      setShowFullAnswer(true);
+    }
+  }, []);
+
+  const toggleAnswer = () => {
+    setShowFullAnswer(!showFullAnswer);
+  };
 
   const closeModal = () => {
     setIsModalVisible(false); // Update state to hide modal
@@ -26,10 +38,6 @@ const AnnouncementModal = () => {
 
   const handleBackgroundClick = () => {
     closeModal(); // Close modal when clicking on background
-  };
-
-  const toggleAnswer = () => {
-    setShowFullAnswer(!showFullAnswer);
   };
 
   return (
@@ -47,11 +55,17 @@ const AnnouncementModal = () => {
                 <div key={index} className="AnnouncementModal-content-div">
                   <button className="AnnouncementModal-content-button">{item.button}</button>
                   <h3 className="AnnouncementModal-content-h3">{item.question}</h3>
-                  <p className="AnnouncementModal-content-p" style={{ maxHeight: showFullAnswer ? "none" : "40px", overflow: "hidden", lineHeight: "20px" }}>
+                  <p
+                    ref={modalContentRef}
+                    className={`AnnouncementModal-content-p ${showFullAnswer ? "AnnouncementModal-content-p-expanded" : ""}`}
+                    style={{
+                      maxHeight: showFullAnswer ? "none" : "40px",
+                      overflow: "hidden"
+                    }}
+                  >
                     {item.answer}
                   </p>
-                  <p>{item.answer.split('\n').length}</p>
-                  {item.answer.split('\n').length > 2 && (
+                  {modalContentRef.current.clientHeight > 40 && (
                     <button className="AnnouncementModal-read-more" onClick={toggleAnswer}>
                       {showFullAnswer ? 'Read Less' : 'Read More'}
                     </button>
