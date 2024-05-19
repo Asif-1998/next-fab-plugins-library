@@ -160,7 +160,7 @@
 }
 .AnnouncementTicker-container {
     position: fixed;
-    /* top: 0; */
+    top: 0;
     left: 0;
     right: 0;
     font-family: 'Roboto', sans-serif;
@@ -181,9 +181,7 @@
     left: 0;
     transform: translateY(-50%);
     padding-left: 50px;
-    /* Adjust as needed */
     padding-right: 20px;
-    /* Ensure the text appears on top */
     z-index: 200;
     overflow: hidden;
 }
@@ -192,17 +190,19 @@
     z-index: 6;
 }
 
-.loudspeaker-svg {
+.loudspeaker-svg, .rotateLoudspeakerSvg {
     position: absolute;
     width: 20px;
-    /* Adjust width and height as needed */
     height: 20px;
     left: 17px;
-    /* Adjust position as needed */
     top: 22%;
     transform: translate(-50%, -50%);
     z-index: 5;
-    /* Ensure the SVG is behind the dots */
+    transition: transform 0.4s ease-in-out;
+}
+
+.rotateLoudspeakerSvg {
+    transform: translate(-50%, -50%) rotate(90deg);
 }
 
 .AnnouncementTicker-dot-outer {
@@ -215,7 +215,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 2;
-    /* Ensure the outermost dot is on top */
     animation: increaseOuterDotSize 4s ease-in-out infinite;
     animation-delay: -2s;
 }
@@ -230,7 +229,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 3;
-    /* Ensure the middle dot is between the outermost and inner dots */
     animation: increaseMiddleDotSize 4s ease-in-out infinite;
     animation-delay: -2s;
 }
@@ -245,9 +243,6 @@
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 4;
-    /* Ensure the innermost dot is at the bottom */
-    animation: increaseDotSize 4s linear infinite;
-    animation-delay: 0s;
     animation: increaseInnerDotSize 4s ease-in-out infinite;
     animation-delay: -2s;
 }
@@ -278,7 +273,6 @@
     opacity: 0.8;
     top: 50%;
     transform: translateY(-50%);
-    /* Center vertically */
     right: -2px;
 }
 
@@ -288,13 +282,9 @@
 
 .AnnouncementTicker-li-link {
     color: blue;
-    /* Set link color */
     text-decoration: underline;
-    /* Add underline */
     cursor: pointer;
-    /* Change cursor to pointer */
     margin-left: 5px;
-    /* Adjust margin as needed */
     position: relative;
     padding: 0 20px;
 }
@@ -308,23 +298,6 @@
     opacity: 0.8;
     top: 0;
     left: 4px;
-    /* Adjust the position to align with the text */
-}
-
-@keyframes rotateAnimation {
-    0% {
-        transform: rotate(0deg);
-    }
-    50% {
-        transform: rotate(90deg);
-    }
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-.rotateLoudspeakerSvg {
-    animation: rotateAnimation 4s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
 }
 
 @keyframes increaseInnerDotSize {
@@ -388,8 +361,9 @@
         padding-right: 8px;
     }
 
-    .loudspeaker-svg{
+    .loudspeaker-svg, .rotateLoudspeakerSvg {
         height: 15px;
         width: 15px;
     }
 }
+
