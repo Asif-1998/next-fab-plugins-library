@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./AnnouncementModal.css";
 import newSvg from "./New.svg";
 
 const AnnouncementModal = () => {
-
   const questionsAnswers = [
     { button: "my button", question: "Data types in JavaScript?", answer: "Data types in JavaScript define the data type that a variable can store. JavaScript includes primitive and non-primitive data types." },
     { button: "my button", question: "Object-oriented programming (OOP)?", answer: "OOP is a programming paradigm that allows us to model real-world objects in our code. OOP in JavaScript is based on creating objects that have properties (features) and methods (functions that can perform actions)." },
@@ -14,30 +13,53 @@ const AnnouncementModal = () => {
     { button: "my button", question: "Loops in JavaScript?", answer: "Loops are used to execute the same block of code repeatedly until a specified condition is met. JavaScript supports several types of loops, including for, while, and do-while loops." }
   ];
 
+  const [isModalVisible, setIsModalVisible] = useState(true); // Add state for modal visibility
+  const [expanded, setExpanded] = useState(false); // State variable to track expansion
+
   const closeModal = () => {
-    console.log("closed");
-  }
+    setIsModalVisible(false); // Update state to hide modal
+  };
+
+  const handleModalClick = (e) => {
+    e.stopPropagation(); // Prevent propagation of click event to modal background
+  };
+
+  const handleBackgroundClick = () => {
+    closeModal(); // Close modal when clicking on background
+  };
+
+  const toggleExpand = () => {
+    setExpanded(!expanded); // Toggle the expansion state
+  };
 
   return (
     <>
-      <div className="AnnouncementModal-modal">
-        <div className="AnnouncementModal-modal-content">
-          <div className="AnnouncementModal-modal-header">
-            <img src={newSvg} alt="icon" className="AnnouncementModal-new-img" />
-            <h2 className="AnnouncementModal-modal-title">Announcements!!!</h2>
-            <span className="AnnouncementModal-close" onClick={closeModal}>×</span>
-          </div>
-          <div className="AnnouncementModal-modal-body">
-            {questionsAnswers.map((item, index) => (
-              <div key={index} className="AnnouncementModal-content-div">
-                <button className="AnnouncementModal-content-button">{item.button}</button>
-                <h3 className="AnnouncementModal-content-h3">{item.question}</h3>
-                <p className="AnnouncementModal-content-p">{item.answer}</p>
-              </div>
-            ))}
+      {isModalVisible && (
+        <div className="AnnouncementModal-modal" onClick={handleBackgroundClick}>
+          <div className="AnnouncementModal-modal-content" onClick={handleModalClick}>
+            <div className="AnnouncementModal-modal-header">
+              <img src={newSvg} alt="icon" className="AnnouncementModal-new-img" />
+              <h2 className="AnnouncementModal-modal-title">Announcements!!!</h2>
+              <span className="AnnouncementModal-close" onClick={closeModal}>×</span>
+            </div>
+            <div className="AnnouncementModal-modal-body">
+              {questionsAnswers.map((item, index) => (
+                <div key={index} className="AnnouncementModal-content-div">
+                  <button className="AnnouncementModal-content-button">{item.button}</button>
+                  <h3 className="AnnouncementModal-content-h3">{item.question}</h3>
+                  <p className={`AnnouncementModal-content-p ${expanded ? 'AnnouncementModal-content-p-expanded' : ''}`}>{item.answer}</p>
+                  {/* Render "Read More" link only if the content exceeds two lines */}
+                  {item.answer.split('\n').length > 2 && (
+                    <button className="AnnouncementModal-read-more" onClick={toggleExpand}>
+                      {expanded ? 'Read Less' : 'Read More'}
+                    </button>
+                  )}
+                </div>
+              ))}
           </div>
         </div>
-      </div>
+        </div >
+      )}
     </>
   );
 };
