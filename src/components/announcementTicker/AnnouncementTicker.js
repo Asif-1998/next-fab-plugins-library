@@ -34,9 +34,9 @@ const AnnouncementTicker = ({ page }) => {
         <span className="AnnouncementTicker-title-text">Announcement</span>
       </div>
       <ul className="AnnouncementTicker-ul">
-        <li className="AnnouncementTicker-li">This script calculates the total height needed based on the provided dimensions</li>
-        <li className="AnnouncementTicker-li">According to your actual design <span className="AnnouncementTicker-li-link">click here</span></li>
-        <li className="AnnouncementTicker-li">63a054b0eca6c7459d2f1ab267d98656e99311d0</li>
+        <li className="AnnouncementTicker-li">{annArray[0]}</li>
+        <li className="AnnouncementTicker-li">{annArray[1]} <span className="AnnouncementTicker-li-link">click here</span></li>
+        <li className="AnnouncementTicker-li">{annArray[2]}</li>
       </ul>
     </div>
   );
