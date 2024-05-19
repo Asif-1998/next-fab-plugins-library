@@ -1,22 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import loudspeakerSvg from "./loudspeaker.svg";
 import "./AnnouncementTicker.css";
 
 const AnnouncementTicker = () => {
-  //const [rotate, setRotate] = useState(false);
+  // State to track the rotation state
+  const [rotate, setRotate] = useState(false);
 
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setRotate(prevRotate => !prevRotate);
-//     }, 2000);
+  useEffect(() => {
+    // Set up an interval to toggle the rotate state every 2000 milliseconds (2 seconds)
+    const interval = setInterval(() => {
+      // Update the rotate state using the previous value
+      setRotate(prevRotate => !prevRotate);
+    }, 2000);
 
-//     return () => clearInterval(interval);
-//   }, []);
+    // Clean up the interval when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
+
+  // Determine the class name based on the rotate state
+  const rotateClassName = rotate ? "rotateLoudspeakerSvg" : "loudspeaker-svg";
 
   return (
     <div className="AnnouncementTicker-container">
       <div className="AnnouncementTicker-title">
-        <img src={loudspeakerSvg} alt="Loudspeaker" className="loudspeaker-svg" />
+        <img src={loudspeakerSvg} alt="Loudspeaker" className={rotateClassName} />
+        <span className="AnnouncementTicker-dot-outer"></span>
+        <span className="AnnouncementTicker-dot-middle"></span>
+        <span className="AnnouncementTicker-dot-inner"></span>
         <span className="AnnouncementTicker-title-text">Announcement</span>
       </div>
       <ul className="AnnouncementTicker-ul">
