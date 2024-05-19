@@ -7,7 +7,7 @@ import configSteps from "../../clientConfig.json";
 const AnnouncementTicker = ({ page }) => {
   // State to track the rotation state
   const [rotate, setRotate] = useState(false);
-  const annArray = configSteps[page].announcementModal.items;
+  const annArray = configSteps[page].announcementTicker.items;
   console.log(annArray);
 
   useEffect(() => {

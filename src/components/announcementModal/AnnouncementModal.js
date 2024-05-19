@@ -6,7 +6,7 @@ import configSteps from "../../clientConfig.json";
 
 const AnnouncementModal = ({ page }) => {
 
-  const annArray = configSteps[page].AnnouncementTicker.questionsAnswers;
+  const annArray = configSteps[page].announcementModal.questionsAnswers;
   console.log(annArray);
 
   const questionsAnswers = [
