@@ -59,8 +59,8 @@ const AnnouncementModal = ({ page }) => {
   );
 };
 
-AnnouncementTicker.propTypes = {
-  page: PropTypes.string  // Here we specify that the page prop should be a string
+AnnouncementModal.propTypes = {
+  page: PropTypes.string.isRequired,
 };
 
 export default AnnouncementModal;
