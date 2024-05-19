@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import "./AnnouncementModal.css";
 import newSvg from "./New.svg";
+import PropTypes from 'prop-types';
+import configSteps from "../../clientConfig.json";
 
-const AnnouncementModal = () => {
+const AnnouncementModal = ({ page }) => {
+
+  const annArray = configSteps[page].AnnouncementTicker.questionsAnswers;
+  console.log(annArray);
+
   const questionsAnswers = [
     { button: "my button", question: "Data types in JavaScript?", answer: "Data types in JavaScript define the data type that a variable can store. JavaScript includes primitive and non-primitive data types." },
     { button: "my button", question: "Object-oriented programming (OOP)?", answer: "OOP is a programming paradigm that allows us to model real-world objects in our code. OOP in JavaScript is based on creating objects that have properties (features) and methods (functions that can perform actions)." },
@@ -51,6 +57,10 @@ const AnnouncementModal = () => {
       )}
     </>
   );
+};
+
+AnnouncementTicker.propTypes = {
+  page: PropTypes.string  // Here we specify that the page prop should be a string
 };
 
 export default AnnouncementModal;

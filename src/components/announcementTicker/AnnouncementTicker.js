@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import loudspeakerSvg from "./loudspeaker.svg";
 import "./AnnouncementTicker.css";
+import PropTypes from 'prop-types';
+import configSteps from "../../clientConfig.json";
 
-const AnnouncementTicker = () => {
+const AnnouncementTicker = ({ page }) => {
   // State to track the rotation state
   const [rotate, setRotate] = useState(false);
+  const annArray = configSteps[page].announcementModal.items;
+  console.log(annArray);
 
   useEffect(() => {
     // Set up an interval to toggle the rotate state every 2000 milliseconds (2 seconds)
@@ -36,6 +40,10 @@ const AnnouncementTicker = () => {
       </ul>
     </div>
   );
+};
+
+AnnouncementTicker.propTypes = {
+    page: PropTypes.string  // Here we specify that the page prop should be a string
 };
 
 export default AnnouncementTicker;
