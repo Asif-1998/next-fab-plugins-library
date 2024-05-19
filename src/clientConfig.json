@@ -1,0 +1,137 @@
+{
+    "home": {
+        "contextualGuide": {
+            "enabled": true,
+            "theme": {
+                "primaryColor": "#007bff",
+                "secondaryColor": "#6c757d",
+                "yellowColor": "#fde047",
+                "default": ""
+            },
+            "steps": [
+                {
+                    "id": "step-1",
+                    "title": "Explore Tomato",
+                    "content": "Click on the menu items to exlore our website .",
+                    "targetSelector": "#navbar-middle-menu",
+                    "position": "bottom-center"
+                },
+                {
+                    "id": "step-2",
+                    "title": "Food Menu",
+                    "content": "Click here to check our food categories .",
+                    "targetSelector": "#view-all-menu",
+                    "position": "right-center"
+                },
+                {
+                    "id": "step-3",
+                    "title": "Food Options",
+                    "content": "Click on your favourite food to check all the food items related to that category .",
+                    "targetSelector": "#explore-menu-list",
+                    "position": "top-center"
+                },
+                {
+                    "id": "step-4",
+                    "title": "Add Your favourite food",
+                    "content": "Click here to add your favourite food on your cart list .",
+                    "targetSelector": "#add-food-item",
+                    "position": "bottom-start"
+                },
+                {
+                    "id": "step-5",
+                    "title": "Cart Items",
+                    "content": "Click here to check the food items you added in your cart list .",
+                    "targetSelector": "#check-cart-items",
+                    "position": "bottom-end"
+                },
+                {
+                    "id": "step-6",
+                    "title": "Sign in",
+                    "content": "But to order any food you have to sign in .",
+                    "targetSelector": "#sig-in",
+                    "position": "bottom-end"
+                }
+            ],
+            "onboardingCompletedCookie": "onboarding_completed",
+            "showOnboardingOnReload": false
+        },
+        "announcementTicker": {
+            "enabled": true,
+            "items": [
+                "This script calculates the total height needed based on the provided dimensions",
+                "According to your actual design",
+                "63a054b0eca6c7459d2f1ab267d98656e99311d0"
+            ]
+        }
+    },
+    "cart": {
+        "contextualGuide": {
+            "enabled": true,
+            "theme": {
+                "primaryColor": "#007bff",
+                "secondaryColor": "#6c757d",
+                "yellowColor": "#fde047",
+                "default": ""
+            },
+            "steps": [
+                {
+                    "id": "step-1",
+                    "title": "Promocode",
+                    "content": "If you have promocode, you can use .",
+                    "targetSelector": "#cart-promo-code-input",
+                    "position": "bottom-center"
+                },
+                {
+                    "id": "step-2",
+                    "title": "Proceed",
+                    "content": "Click here to proceed for payment .",
+                    "targetSelector": "#proceed_to_checkout",
+                    "position": "right-center"
+                }
+            ],
+            "onboardingCompletedCookie": "onboarding_completed",
+            "showOnboardingOnReload": false
+        },
+        "announcementModal": {
+            "enabled": true,
+            "title": "Important Announcement!",
+            "questionsAnswers": [
+                {
+                    "button": "my button",
+                    "question": "Data types in JavaScript?",
+                    "answer": "Data types in JavaScript define the data type that a variable can store. JavaScript includes primitive and non-primitive data types."
+                },
+                {
+                    "button": "my button",
+                    "question": "Object-oriented programming (OOP)?",
+                    "answer": "OOP) is a programming paradigm that allows us to model real-world objects in our code. OOP in JavaScript is based on creating objects that have properties (features) and methods (functions that can perform actions)."
+                },
+                {
+                    "button": "my button",
+                    "question": "Scope?",
+                    "answer": "Scope determines the accessibility of variables, objects, and functions from different parts of the code."
+                },
+                {
+                    "button": "my button",
+                    "question": "Functions in JavaScript?",
+                    "answer": "Functions are blocks of reusable code that perform a specific task. In JavaScript, functions are first-class objects, which means they can be passed around like any other value."
+                },
+                {
+                    "button": "my button",
+                    "question": "Arrays in JavaScript?",
+                    "answer": "Arrays are special types of objects that store multiple values in a single variable. They are used to store collections of data, such as lists of items or sets of values."
+                },
+                {
+                    "button": "my button",
+                    "question": "Conditional statements in JavaScript?",
+                    "answer": "Conditional statements are used to execute different code based on different conditions. The most common conditional statements in JavaScript are if, else if, and else."
+                },
+                {
+                    "button": "my button",
+                    "question": "Loops in JavaScript?",
+                    "answer": "Loops are used to execute the same block of code repeatedly until a specified condition is met. JavaScript supports several types of loops, including for, while, and do-while loops."
+                }
+            ]
+        }
+    }
+}

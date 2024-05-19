@@ -28,6 +28,13 @@ module.exports = {
                 test: /\.svg$/,
                 use: ['svg-url-loader'],
             },
+            {
+                test: /\.json$/,
+                type: 'javascript/auto',
+                use: {
+                    loader: 'json-loader',
+                },
+            },
         ],
     },
     plugins: [
@@ -36,6 +43,6 @@ module.exports = {
         }),
     ],
     resolve: {
-        extensions: ['.js', '.jsx'],
+        extensions: ['.js', '.jsx', '.json'],
     },
 };
