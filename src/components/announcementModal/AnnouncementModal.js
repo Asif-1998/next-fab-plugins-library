@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import configSteps from "../../clientConfig.json";
 
 const AnnouncementModal = ({ page }) => {
-  if (!configSteps.hasOwnProperty(page)) {
+  if (configSteps[page]) {
     if (configSteps[page].announcementModal) {
       if (configSteps[page].announcementModal.enabled == true) {
         const questionsAnswers = configSteps[page].announcementModal.questionsAnswers;

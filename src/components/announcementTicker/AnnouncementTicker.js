@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import configSteps from "../../clientConfig.json";
 
 const AnnouncementTicker = ({ page }) => {
-    if (!configSteps.hasOwnProperty(page)) {
+    if (configSteps[page]) {
         if (configSteps[page].announcementTicker) {
             if (configSteps[page].announcementTicker.enabled == true) {
                 // State to track the rotation state

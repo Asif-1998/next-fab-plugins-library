@@ -4,7 +4,7 @@ import './TourGuide.css';
 import configSteps from "../../clientConfig.json";
 
 const TourGuide = (page) => {
-    if (!configSteps.hasOwnProperty(page)) {
+    if (configSteps[page]) {
         if (configSteps[page].contextualGuide) {
             let step;
             let theme;
