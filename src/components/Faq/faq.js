@@ -85,7 +85,7 @@ const FAQComponent = () => {
     );
 };
 
-export const FAQGuide = ()=>{
+const FAQGuide = ()=>{
 
     const [toggleFAQ, setToggleFAQ] = useState(false);
 
@@ -104,5 +104,7 @@ export const FAQGuide = ()=>{
     )
 
 }
+
+export default FAQGuide;
 
 
