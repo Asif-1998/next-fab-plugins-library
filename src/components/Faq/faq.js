@@ -6,6 +6,7 @@ import MessageIconImg from "./assets/icon/MessageIocn.svg";
 import SearchIcon from "./assets/icon/search.svg";
 import CircleDownIcon from "./assets/icon/CircleDown.svg";
 import CircleUpIcon from "./assets/icon/CircleUp.svg";
+import AMAButton from "./assets/icon/amaButton.svg";
 
 const faqItems = [
     { question: "How do I open a bank account with FAB?", answer: "To create your account with FAB, you can visit their website and follow the instructions for account opening. You may need to provide personal information and identification documents" },
@@ -84,4 +85,24 @@ const FAQComponent = () => {
     );
 };
 
-export default FAQComponent;
+export const FAQGuide = ()=>{
+
+    const [toggleFAQ, setToggleFAQ] = useState(false);
+
+    const handleFAQ = ()=>{
+        setToggleFAQ(!toggleFAQ);
+        if(toggleFAQ){
+
+        }
+    }
+
+    return(
+        <div>
+            {toggleFAQ && <FAQComponent/>}
+            <img src={AMAButton} alt="ama" onClick={()=>handleFAQ()}/>
+        </div>
+    )
+
+}
+
+
