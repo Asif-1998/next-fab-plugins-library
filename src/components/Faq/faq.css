@@ -22,7 +22,7 @@
     bottom: 20%;
     position: fixed;
     right: 2%;
-    z-index: 999;
+    z-index: 1000;
 }
 
 .ama-position-bottom-right {
@@ -83,7 +83,7 @@
 
 
 .faq-search-img {
-    left: 34px; 
+    left: 0px; 
     position: absolute;
     width: 10px;
     margin-left: 30px;
