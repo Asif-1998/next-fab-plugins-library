@@ -4,8 +4,8 @@ import newSvg from "./New.svg";
 import PropTypes from 'prop-types';
 import configSteps from "../../clientConfig.json";
 
-const AnnouncementModal = () => {
-  const page='cart'
+const AnnouncementModal = ({ page }) => {
+  console.log("2",page);
   if (configSteps[page]) {
     if (configSteps[page].announcementModal) {
       if (configSteps[page].announcementModal.enabled == true) {
@@ -87,18 +87,18 @@ AnnouncementModal.propTypes = {
   page: PropTypes.string.isRequired,
 };
 
-const AnnouncementButton = ()=>{
+const AnnouncementButton = ({ page })=>{
 
   const [toggleModal, setToggleModal] = useState(false);
 
   const handleModal = ()=>{
-    setToggleModal(!toggleModal);
-      
+    setToggleModal(!toggleModal); 
   }
+  console.log("1",page);
 
   return(
       <>
-       {toggleModal && <AnnouncementModal />}
+       {toggleModal && <AnnouncementModal page={page} />}
         <button onClick={()=>handleModal()} className='ann-modal-bottom-position'>Open Announcement</button>
       </>
   )
