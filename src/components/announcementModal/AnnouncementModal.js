@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import configSteps from "../../clientConfig.json";
 
 const AnnouncementModal = ({ page }) => {
-  console.log("2",page);
   if (configSteps[page]) {
     if (configSteps[page].announcementModal) {
       if (configSteps[page].announcementModal.enabled == true) {
@@ -94,7 +93,6 @@ const AnnouncementButton = ({ page })=>{
   const handleModal = ()=>{
     setToggleModal(!toggleModal); 
   }
-  console.log("1",page);
 
   return(
       <>
