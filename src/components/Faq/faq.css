@@ -22,7 +22,7 @@
     bottom: 20%;
     position: fixed;
     right: 2%;
-    z-index: 999;
+    z-index: 1000;
 }
 
 .ama-position-bottom-right {

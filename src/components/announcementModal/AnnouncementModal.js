@@ -86,4 +86,20 @@ AnnouncementModal.propTypes = {
   page: PropTypes.string.isRequired,
 };
 
-export default AnnouncementModal;
+const AnnouncementButton = ({ page })=>{
+
+  const [toggleModal, setToggleModal] = useState(false);
+
+  const handleModal = ()=>{
+    setToggleModal(!toggleModal); 
+  }
+
+  return(
+      <>
+       {toggleModal && <AnnouncementModal page={page} />}
+        <button onClick={()=>handleModal()} className='ann-modal-bottom-position'>Open Announcement</button>
+      </>
+  )
+
+}
+export default AnnouncementButton;
