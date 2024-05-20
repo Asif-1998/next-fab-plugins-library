@@ -59,13 +59,12 @@ const AnnouncementModal = ({ page }) => {
                         <p ref={textRef} className="AnnouncementModal-content-p" style={{ maxHeight: isReadMore ? `${maxHeight}px` : 'none', overflow: 'hidden', lineHeight: `${lineHeight}px` }}>
                           {item.answer}
                         </p>
-                        {<span>isOverflow</span>}
                         {isOverflow && (
                           <button onClick={toggleReadMore} className="AnnouncementModal-toggle-button">
                             {isReadMore ? 'Read More' : 'Read Less'}
                           </button>
                         )}
-                        {index !== questionsAnswers.length - 1 && <hr className='AnnModal-horizontal-line' />}
+                        {index !== questionsAnswers.length - 1 && <hr className='AnnouncementModal-horizontal-line' />}
                       </div>
                     ))}
                   </div>
