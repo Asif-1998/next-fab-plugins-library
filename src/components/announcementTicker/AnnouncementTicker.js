@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useEffect } from 'react';
 import loudspeakerSvg from "./loudspeaker.svg";
 import "./AnnouncementTicker.css";
