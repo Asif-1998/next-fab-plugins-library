@@ -21,7 +21,7 @@ const faqItems = [
     { question: "How long does it take for a fund transfer to be processed through FAB?", answer: "The processing time for fund transfers with FAB can vary depending on factors such as the destination of the transfer and the transfer method used. Domestic transfers may be processed within the same business day, while international transfers may take a few business days to complete." }
 ];
 
-const FAQComponent = () => {
+const FAQComponent = (props) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [faqItemsJson, setFaqItemsJson] = useState(faqItems);
 
@@ -44,7 +44,7 @@ const FAQComponent = () => {
     };
 
     return (
-        <div className="faq-container-outer">
+        <div className="faq-container-outer faq-position-bottom-right">
             <div className="faq-container-header">
                 <div className="faq-header-text">
                     <span className='header-text-faq'>FAQs with FinBot</span><br />
@@ -52,7 +52,7 @@ const FAQComponent = () => {
                 </div>
                 <img className="faq-boat-img" src={ChatbotIcon} alt="Chatbot" />
                 <img className="faq-msz-img" src={MessageIconImg} alt="Message Icon" />
-                <span className="close-icon">×</span>
+                <span className="close-icon" onClick={props.setToggleFAQ(false)}>×</span>
             </div>
             <div className="faq-body-container">
                 <img className="faq-search-img" src={SearchIcon} alt="Search Icon" />
@@ -91,14 +91,11 @@ const FAQGuide = ()=>{
 
     const handleFAQ = ()=>{
         setToggleFAQ(!toggleFAQ);
-        if(toggleFAQ){
-
-        }
     }
 
     return(
-        <div>
-            {toggleFAQ && <FAQComponent/>}
+        <div className='ama-position-bottom-right'>
+            {toggleFAQ && <FAQComponent setToggleFAQ={setToggleFAQ}/>}
             <img src={AMAButton} alt="ama" onClick={()=>handleFAQ()}/>
         </div>
     )

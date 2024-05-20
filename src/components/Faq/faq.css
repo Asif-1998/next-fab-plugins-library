@@ -18,10 +18,18 @@
     left: 0;
 }
 
-.position-bottom-right {
-    bottom: 0;
+.faq-position-bottom-right {
+    bottom: 15%;
     position: fixed;
-    right: 0;
+    right: 2%;
+    z-index: 999;
+}
+
+.ama-position-bottom-right {
+    bottom: 10%;
+    position: fixed;
+    right: 2%;
+    z-index: 999;
 }
 
 .position-bottom-left {
