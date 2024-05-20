@@ -44,7 +44,7 @@ const FAQComponent = () => {
     };
 
     return (
-        <div className="faq-container-outer">
+        <div className="faq-container-outer faq-position-bottom-right">
             <div className="faq-container-header">
                 <div className="faq-header-text">
                     <span className='header-text-faq'>FAQs with FinBot</span><br />

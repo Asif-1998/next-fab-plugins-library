@@ -399,7 +399,7 @@
 }
 
 .faq-position-bottom-right {
-    bottom: 15%;
+    bottom: 20%;
     position: fixed;
     right: 2%;
     z-index: 999;
