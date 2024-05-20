@@ -99,9 +99,7 @@ const AnnouncementButton = ()=>{
   return(
       <>
        {toggleModal && <AnnouncementModal />}
-      <div className='ann-modal-bottom-position'>
-          <button onClick={()=>handleModal()}>Open Announcement</button>
-      </div>
+        <button onClick={()=>handleModal()} className='ann-modal-bottom-position'>Open Announcement</button>
       </>
   )
 

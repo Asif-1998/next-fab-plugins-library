@@ -147,9 +147,16 @@
 }
 
 .ann-modal-bottom-position{
-    bottom: 50%;
-    position: fixed;
-    right: 0;
     z-index: 999;
     cursor: pointer;
+    padding: 8px 30px;
+    font-size: 20px;
+    background-color: #ff9f3f;
+    color: white;
+    border: none;
+    position: fixed;
+    right: 0;
+    transform: rotate(-90deg);
+    transform-origin: bottom right;
+    top: 50%;
 }
