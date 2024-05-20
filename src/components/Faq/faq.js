@@ -95,10 +95,12 @@ const FAQGuide = ()=>{
     }
 
     return(
+        <>
+         {toggleFAQ && <FAQComponent />}
         <div className='ama-position-bottom-right'>
-            {toggleFAQ && <FAQComponent />}
             <img src={AMAButton} alt="ama" onClick={()=>handleFAQ()}/>
         </div>
+        </>
     )
 
 }
