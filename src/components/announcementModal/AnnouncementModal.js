@@ -4,7 +4,8 @@ import newSvg from "./New.svg";
 import PropTypes from 'prop-types';
 import configSteps from "../../clientConfig.json";
 
-const AnnouncementModal = ({ page }) => {
+const AnnouncementModal = () => {
+  const page='cart'
   if (configSteps[page]) {
     if (configSteps[page].announcementModal) {
       if (configSteps[page].announcementModal.enabled == true) {
@@ -86,4 +87,23 @@ AnnouncementModal.propTypes = {
   page: PropTypes.string.isRequired,
 };
 
-export default AnnouncementModal;
+const AnnouncementButton = ()=>{
+
+  const [toggleModal, setToggleModal] = useState(false);
+
+  const handleModal = ()=>{
+    setToggleModal(!toggleModal);
+      
+  }
+
+  return(
+      <>
+       {toggleModal && <AnnouncementModal />}
+      <div className='ann-modal-bottom-position'>
+          <button onClick={()=>handleModal()}>Open Announcement</button>
+      </div>
+      </>
+  )
+
+}
+export default AnnouncementButton;
