@@ -410,6 +410,7 @@
     position: fixed;
     right: 2%;
     z-index: 999;
+    cursor: pointer;
 }
 
 .position-bottom-left {
