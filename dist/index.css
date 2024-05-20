@@ -124,16 +124,17 @@
 /* Content Paragraph */
 .AnnouncementModal-content-p {
     font-size: 13px;
-    line-height: 20px;
+    /* line-height: 20px; */
     /* Adjust the line height value as per your design */
     position: relative;
     opacity: 0.8;
 }
 
 /* Read More Link */
-.AnnouncementModal-read-more {
+.AnnouncementModal-toggle-button {
     color: blue;
-    /* Customize link color */
+    background: none;
+    border: none;
     cursor: pointer;
     display: block;
     /* Ensure the link occupies its own line */

@@ -11,6 +11,9 @@ const AnnouncementModal = ({ page }) => {
         const questionsAnswers = configSteps[page].announcementModal.questionsAnswers;
 
         const [isModalVisible, setIsModalVisible] = useState(true);
+        const [isReadMore, setIsReadMore] = useState(true);
+        const [isOverflow, setIsOverflow] = useState(false);
+        const textRef = useRef(null);
 
         const closeModal = () => {
           setIsModalVisible(false); // Update state to hide modal
@@ -23,6 +26,20 @@ const AnnouncementModal = ({ page }) => {
         const handleBackgroundClick = () => {
           closeModal(); // Close modal when clicking on background
         };
+
+        const toggleReadMore = () => {
+          setIsReadMore(!isReadMore);
+        };
+
+        const lineHeight = 20; // line height in pixels
+        const maxLines = 2; // maximum number of lines to show initially
+        const maxHeight = lineHeight * maxLines; // calculate max height
+
+        useEffect(() => {
+          if (textRef.current.scrollHeight > maxHeight) {
+            setIsOverflow(true);
+          }
+        }, [maxHeight]);
 
         return (
           <>
@@ -39,7 +56,16 @@ const AnnouncementModal = ({ page }) => {
                       <div key={index} className="AnnouncementModal-content-div">
                         <button className="AnnouncementModal-content-button">{item.button}</button>
                         <h3 className="AnnouncementModal-content-h3">{item.question}</h3>
-                        <p className="AnnouncementModal-content-p">{item.answer}</p>
+                        <p ref={textRef} className="AnnouncementModal-content-p" style={{ maxHeight: isReadMore ? `${maxHeight}px` : 'none', overflow: 'hidden', lineHeight: `${lineHeight}px` }}>
+                          {item.answer}
+                        </p>
+                        {<span>isOverflow</span>}
+                        {isOverflow && (
+                          <button onClick={toggleReadMore} className="AnnouncementModal-toggle-button">
+                            {isReadMore ? 'Read More' : 'Read Less'}
+                          </button>
+                        )}
+                        {index !== questionsAnswers.length - 1 && <hr className='AnnModal-horizontal-line' />}
                       </div>
                     ))}
                   </div>
