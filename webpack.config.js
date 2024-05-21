@@ -1,41 +1,38 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
+    mode: 'production', // or 'development' for development mode
     entry: './src/index.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'index.js',
         library: 'next-fab-plugins-library',
         libraryTarget: 'umd',
+        globalObject: 'this', // Added for UMD bundles
     },
     externals: [nodeExternals()],
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.(js|jsx|ts|tsx)$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+                    },
                 },
-            },
-            {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
-            },
-            {
-                test: /\.svg$/,
-                use: ['svg-url-loader'],
             },
         ],
     },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'index.css',
-        }),
-    ],
     resolve: {
-        extensions: ['.js', '.jsx', '.json'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    },
+    optimization: {
+        minimize: false, // Keep it false for Next.js projects
+    },
+    performance: {
+        hints: false, // Disable performance hints
     },
 };
