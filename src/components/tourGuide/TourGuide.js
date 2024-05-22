@@ -1,5 +1,4 @@
 import { driver } from 'driver.js';
-import 'driver.js/dist/driver.css';
 import './TourGuide.css';
 import configSteps from "../../clientConfig.json";
 
